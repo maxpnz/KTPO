@@ -1,0 +1,10 @@
+.vs/*
+TRPO/bin/*
+TRPO/obj/*
+TRPO/properties/*
+*.config
+*.txt
+*.resx
+*.csproj
+*.suo
+*.sln
