@@ -41,7 +41,7 @@ namespace TRPO
                 }
                 else
                     MessageBox.Show("Введено недопустимое число или превышено максимальное число элементов!!!");
-               
+
             }
             else
             {
@@ -77,6 +77,7 @@ namespace TRPO
             button3.Enabled = true;
             button2.Enabled = false;
             button4.Enabled = true;
+            button5.Enabled = false;
 
         }
 
@@ -86,25 +87,26 @@ namespace TRPO
             int[] result = Mass.Reverse().Distinct().Reverse().ToArray();
             label3.Text = null;
             int index = result.Length;
-            if (result[index-1] != 0)
+            if (result[index - 1] != 0)
             {
                 for (int i = 0; i < result.Length; i++)         //Вывод на в текстбокск результат
                 {
                     label3.Text = label3.Text + result[i].ToString() + " ";
                 };
             }
-               else          //В случае если в конец пишется ноль, не выводим
+            else          //В случае если в конец пишется ноль, не выводим
             {
-                for (int i = 0; i < result.Length-1; i++)         //Вывод на в текстбокск результат
+                for (int i = 0; i < result.Length - 1; i++)         //Вывод на в текстбокск результат
                 {
                     label3.Text = label3.Text + result[i].ToString() + " ";
                 };
             }
             Array.Clear(Mass, 0, Mass.Length);
-            Array.Clear(result,0,result.Length);
+            Array.Clear(result, 0, result.Length);
             i = 0;
             button2.Enabled = false;
             button1.Enabled = false;
+            button5.Enabled = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -139,9 +141,9 @@ namespace TRPO
                         {
                             Mass = checker.Select(int.Parse).ToArray();  // Успешно. Преобразовываем в int и забиваем массив
                             for (int i = 0; i < Mass.Length; i++)         //Вывод на в текстбокск результат
-                                {
-                                    label3.Text = label3.Text + Mass[i].ToString() + " ";
-                                }
+                            {
+                                label3.Text = label3.Text + Mass[i].ToString() + " ";
+                            }
                             label3.Text = label3.Text + Environment.NewLine;
                             i = lenght;
                             MessageBox.Show("Массив из файла успешно загружен!!!");
@@ -154,7 +156,7 @@ namespace TRPO
                         {
                             MessageBox.Show("В массиве введены большие числа");
                         }
-                            }
+                    }
                     else
                     {
                         MessageBox.Show("Кол-во элементов в массиве больше 100!!!");
@@ -172,8 +174,18 @@ namespace TRPO
 
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-
-
+        private void button5_Click(object sender, EventArgs e)
+        {
+            StreamWriter str = new StreamWriter("Out.txt");
+            str.WriteLine(label3.Text);
+            str.Close();
+            MessageBox.Show("Файл полученного массива сохранён");
+            button5.Enabled = false;
+        }
     }
 }
